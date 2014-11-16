@@ -29,6 +29,8 @@ struct divides_ope: operation_function {
 
 inline ValueType my_pow(const ValueType& a, int b)
 {
+    if(b == 1)
+        return a;
     return my_pow(a, b-1) * a;
 }
 
