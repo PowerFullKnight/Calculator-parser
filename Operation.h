@@ -29,16 +29,15 @@ struct divides_ope: operation_function {
 
 inline ValueType my_pow(const ValueType& a, int b)
 {
-    if(b == 1)
-        return a;
-    return my_pow(a, b-1) * a;
+    ValueType res {1};
+    for(int i(0); i < b; ++i)
+        res *= a;
+    return res;
 }
 
 struct pow_ope: operation_function {
   ValueType operator() (const ValueType& x, const ValueType& y) const override
   {
-      if(y - 2 < 0.0001) // Very used case
-        return x*x;
       return my_pow(x, y);
   }
 };
