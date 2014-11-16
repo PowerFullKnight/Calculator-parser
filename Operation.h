@@ -38,7 +38,7 @@ inline ValueType my_pow(const ValueType& a, int b)
 struct pow_ope: operation_function {
   ValueType operator() (const ValueType& x, const ValueType& y) const override
   {
-      return my_pow(x, y);
+      return my_pow(x, static_cast<int>(y));
   }
 };
 

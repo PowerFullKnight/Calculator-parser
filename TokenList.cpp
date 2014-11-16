@@ -1,6 +1,7 @@
 #include "TokenList.h"
 
 #include <stdexcept>
+#include <iostream>
 
 #include "CharUtility.h"
 #include "Error.h"
@@ -17,6 +18,7 @@ TokenList::TokenList(const std::vector<Token> list):
 
 ValueType TokenList::eval()
 {
+
     if(canCalculate()){
         return calculate();
     }

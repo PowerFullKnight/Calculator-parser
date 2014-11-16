@@ -4,10 +4,12 @@
 
 #include "TokenList.h"
 #include "Error.h"
+#include "CharUtility.h"
 
 int main()
 {
     setlocale(LC_ALL, "");
+
     std::cout << "Bienvenue dans cette calculatrice créer par Thomas Chevalier.\n"
                 "Pour l'instant seuls les operations suivantes sont supportés : + - * / ^.\n\n";
     std::cout << "Entrez votre opération ";

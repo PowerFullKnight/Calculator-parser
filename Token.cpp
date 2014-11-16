@@ -54,7 +54,7 @@ std::unique_ptr<operation_function> Token::operation() const
         opePtr = std::make_unique<multiplies_ope>();
         break;
     case '/':
-        opePtr = std::make_unique<minus_ope>();
+        opePtr = std::make_unique<divides_ope>();
         break;
     case '^':
         opePtr = std::make_unique<pow_ope>();
