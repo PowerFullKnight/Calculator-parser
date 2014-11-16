@@ -4,7 +4,6 @@
 
 #include "TokenList.h"
 #include "Error.h"
-#include "CharUtility.h"
 
 int main()
 {

@@ -1,7 +1,6 @@
 #include "TokenList.h"
 
 #include <stdexcept>
-#include <iostream>
 
 #include "CharUtility.h"
 #include "Error.h"
