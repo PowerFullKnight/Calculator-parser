@@ -5,9 +5,18 @@
 #include "TokenList.h"
 #include "Error.h"
 
+#include "Decimal.h"
+
+void dispFract(const Decimal& a)
+{
+    std::cout << a.numerator() << " / " << a.denominator();
+}
 int main()
 {
     setlocale(LC_ALL, "");
+    Decimal b("0.564");
+    dispFract(b);
+    return 0;
 
     std::cout << "Bienvenue dans cette calculatrice créer par Thomas Chevalier.\n"
                 "Pour l'instant seuls les operations suivantes sont supportés : + - * / ^.\n\n";

@@ -39,15 +39,22 @@ std::string toString(T value)
 }
 
 template <typename T>
-T stringTo(const std::string &to)
+T stringTo(const std::string &to, bool *ok = nullptr)
 {
     std::istringstream iss(to);
     T val;
-    if((iss >> val))
+    if((iss >> val)){
+        if(ok != nullptr)
+            *ok = true;
         return val;
-    else
-        return T();
+    }
+    else{
+        if(ok != nullptr)
+            *ok = false;
+       return T();
+    }
 }
+
 
 template <typename Iter>
 Iter findHighestPrecedence(Iter beg, Iter end)

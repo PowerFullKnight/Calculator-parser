@@ -16,7 +16,8 @@ public:
         TooManyPunct,
         OperatorError,
         NoKnowToken,
-        ExpressionEmpty};
+        ExpressionEmpty,
+        NumberError};
 
     Error(ErrCode code, int position = -1):
         m_errCode(code), m_position(position)
@@ -60,6 +61,9 @@ public:
             break;
         case ExpressionEmpty:
             errStr = "The expression is empty.";
+            break;
+        case NumberError:
+            errStr = "There is a number error";
             break;
         case None:
             errStr = "No error";
