@@ -18,16 +18,16 @@ TokenList::TokenList(const std::vector<Token> list):
 ValueType TokenList::eval()
 {
 
+    if(isEnclaveInBracket()) // On supprime les parenthèses
+    {
+        m_list.erase(m_list.begin(), m_list.begin()+1);
+        m_list.pop_back();
+    }
+
     if(canCalculate()){
         return calculate();
     }
     else{
-        if(isEnclaveInBracket()) // On supprime les parenthèses
-        {
-            m_list.erase(m_list.begin(), m_list.begin()+1);
-            m_list.pop_back();
-        }
-
         auto sepIter = findHighestPrecedence(m_list.begin(), m_list.end());
         if(sepIter == m_list.end()){
             throw Error(Error::OperatorError, -1);
