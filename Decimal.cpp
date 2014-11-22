@@ -121,6 +121,7 @@ bool Decimal::operator>=(const Decimal& lhs) const
 {
     return !(*this < lhs);
 }
+
 // PRIVATE
 void Decimal::fromStringImplement (const std::string &strNumber)
 {
@@ -171,4 +172,16 @@ void Decimal::simplify()
         m_denominator /= p;
         m_numerator /= p;
     }
+}
+
+std::ostream& operator<<(std::ostream& stream, const Decimal& dec)
+{
+    if(dec.minus())
+        stream << '-';
+    stream << dec.numerator();
+    if(dec.denominator() > 1)
+    {
+        stream << '/' << dec.denominator();
+    }
+    return stream;
 }

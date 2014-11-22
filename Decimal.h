@@ -17,6 +17,7 @@ public:
 
     decimalValueType numerator() const noexcept { return m_numerator; }
     decimalValueType denominator() const noexcept { return m_denominator; }
+    bool minus() const noexcept { return m_minus; }
 
     // OPERATOR
     Decimal& operator+=(const Decimal& lhs);
@@ -35,7 +36,6 @@ public:
     bool operator<=(const Decimal& lhs) const;
     bool operator>=(const Decimal& lhs) const;
 
-
 protected:
     void fromStringImplement (const std::string &strNumber);
 
@@ -47,5 +47,7 @@ protected:
     decimalValueType m_denominator;
 
 };
+
+std::ostream& operator<<(std::ostream& stream, const Decimal& dec);
 
 #endif // DECIMAL_H
