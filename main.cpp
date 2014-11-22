@@ -14,8 +14,7 @@ void dispFract(const Decimal& a)
 int main()
 {
     setlocale(LC_ALL, "");
-    Decimal b("0.564");
-    dispFract(b);
+    dispFract(Decimal(1, 2) *= 2);
     return 0;
 
     std::cout << "Bienvenue dans cette calculatrice créer par Thomas Chevalier.\n"
