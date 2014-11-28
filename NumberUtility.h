@@ -53,7 +53,8 @@ T pgcd(T a , T b )
     if(a <b)
         std::swap(a, b);
 
-    if((r = a%b) == 0)
+    r = a%b;
+    if(r == 0)
         return b;
     else
         return pgcd(b, r);

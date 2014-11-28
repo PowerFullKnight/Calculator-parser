@@ -19,16 +19,28 @@ public:
     decimalValueType denominator() const noexcept { return m_denominator; }
     bool minus() const noexcept { return m_minus; }
 
+    bool isInteger() const noexcept { return m_denominator == 1; }
+    template<typename T>
+    T toValue() const
+    {
+        T value = static_cast<T>(m_numerator) / static_cast<T>(m_denominator);
+        if(m_minus)
+            return -value;
+        return value;
+    }
+
     // OPERATOR
     Decimal& operator+=(const Decimal& lhs);
     Decimal& operator-=(const Decimal& lhs);
     Decimal& operator*=(const Decimal& lhs);
     Decimal& operator/=(const Decimal& lhs);
+    Decimal& operator%=(const Decimal& lhs);
 
     Decimal operator+(const Decimal& lhs) const;
     Decimal operator-(const Decimal& lhs) const;
     Decimal operator*(const Decimal& lhs) const;
     Decimal operator/(const Decimal& lhs) const;
+    Decimal operator%(const Decimal& lhs) const;
 
     bool operator==(const Decimal& lhs) const;
     bool operator<(const Decimal& lhs) const;

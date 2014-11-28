@@ -29,7 +29,7 @@ struct divides_ope: operation_function {
 struct pow_ope: operation_function {
   ValueType operator() (const ValueType& x, const ValueType& y) const override
   {
-      return pow(x, static_cast<int>(y));
+      return pow(x, y.toValue<int>());
   }
 };
 

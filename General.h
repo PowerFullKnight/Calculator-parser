@@ -3,6 +3,6 @@
 
 #include "Decimal.h"
 
-typedef double ValueType;
+typedef Decimal ValueType;
 
 #endif // GENERAL_H_INCLUDED

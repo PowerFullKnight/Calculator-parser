@@ -41,7 +41,7 @@ int main()
 
         if(evaluate)
         {
-            double res = l.eval();
+            auto res = l.eval();
             std::cout << "= " << res << '\n';
         }
     }

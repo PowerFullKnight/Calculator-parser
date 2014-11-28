@@ -97,7 +97,7 @@ void TokenList::tokenise(const std::string& expression)
                     ++i;
                 }
             }
-            m_list.push_back(Token('n', stringTo<ValueType>(digitStr)));
+            m_list.push_back(Token('n', ValueType::fromString(digitStr)));
         }
     }
 }

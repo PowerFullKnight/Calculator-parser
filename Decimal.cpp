@@ -3,6 +3,8 @@
 #include "CharUtility.h"
 #include "Error.h"
 
+#include <iostream>
+
 // PUBLIC
 Decimal::Decimal():
     m_minus(false), m_numerator(0), m_denominator(1)
@@ -16,8 +18,8 @@ Decimal::Decimal(const std::string &strNumber):
     fromStringImplement(strNumber);
 }
 
-Decimal::Decimal(decimalValueType numerator, decimalValueType denominator):
-    m_minus(false), m_numerator(numerator), m_denominator(denominator)
+Decimal::Decimal(decimalValueType numerator_a, decimalValueType denominator_a):
+    m_minus(false), m_numerator(numerator_a), m_denominator(denominator_a)
 {}
 
 // PUBLIC & STATIC
@@ -69,6 +71,15 @@ Decimal& Decimal::operator/=(const Decimal& lhs)
     return *this;
 }
 
+Decimal& Decimal::operator%=(const Decimal& lhs)
+{
+    if(!isInteger() || !lhs.isInteger())
+        throw Error(Error::NumberError);
+    m_numerator %= lhs.m_numerator;
+    return *this;
+}
+
+
 Decimal Decimal::operator+(const Decimal& lhs) const
 {
     Decimal temp(*this);
@@ -96,6 +107,14 @@ Decimal Decimal::operator/(const Decimal& lhs) const
     temp /= lhs;
     return temp;
 }
+
+Decimal Decimal::operator%(const Decimal& lhs) const
+{
+    Decimal temp(*this);
+    temp %= lhs;
+    return temp;
+}
+
 
 bool Decimal::operator==(const Decimal& lhs) const
 {
@@ -160,6 +179,16 @@ void Decimal::fromStringImplement (const std::string &strNumber)
         integerPartNbr *= pow10;
         m_numerator = integerPartNbr + decimalPartNbr;
         m_denominator = pow10;
+    }
+    else
+    {
+        bool ok{false};
+        decimalValueType integerPartNbr = stringTo<decimalValueType>(strNumber, &ok);
+        if(!ok){
+            throw Error(Error::NumberError);
+            return;
+        }
+        m_numerator = integerPartNbr;
     }
     simplify();
 
