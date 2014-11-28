@@ -4,9 +4,13 @@
 
 #include "TokenList.h"
 #include "Error.h"
+#include "InfiniteNumber.h"
 
 int main()
 {
+    InfiniteNumber a("1234.5678");
+    a.writeToStream(std::cout);
+    return 0; // TEST
     setlocale(LC_ALL, "");
 
     std::cout << "Bienvenue dans cette calculatrice créer par Thomas Chevalier.\n"

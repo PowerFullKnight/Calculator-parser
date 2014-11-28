@@ -29,6 +29,7 @@ inline bool isValidOperation(const char c) noexcept { return (c!=' ' && c!='\n')
 inline bool isValidToken(const char c) noexcept { return (isDigKind(c) || isOperator(c) || isOpenBracket(c) || isCloseBracket(c)); }
 
 inline int charToDigit(const char c) noexcept { return static_cast<int>(c-'0');  }
+inline char digitToChar(const int i)  noexcept { return static_cast<char>(i+'0');  }
 
 template <typename T>
 std::string toString(T value)
