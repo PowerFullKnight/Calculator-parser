@@ -8,9 +8,9 @@
 
 int main()
 {
-    InfiniteNumber a("1234.5678");
+  /*  InfiniteNumber a("1234.5678");
     a.writeToStream(std::cout);
-    return 0; // TEST
+    return 0; // TEST*/
     setlocale(LC_ALL, "");
 
     std::cout << "Bienvenue dans cette calculatrice créer par Thomas Chevalier.\n"
@@ -45,7 +45,20 @@ int main()
 
         if(evaluate)
         {
-            auto res = l.eval();
+            ValueType res;
+            try{
+                res = l.eval();
+            }
+            catch(Error& err)
+            {
+                int pos = err.getPosition();
+                std::cerr << err.what();
+                if(pos != -1){
+                    std::cout << "Position : " << pos;
+                }
+                std::cout << "\n";
+            }
+
             std::cout << "= " << res << '\n';
         }
     }

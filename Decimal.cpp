@@ -47,9 +47,10 @@ Decimal& Decimal::operator+=(const Decimal& lhs)
 
 Decimal& Decimal::operator-=(const Decimal& lhs)
 {
-    Decimal temp(lhs.m_numerator, lhs.m_denominator);
-    temp.m_minus = !temp.m_minus;
-    operator+=(temp);
+    m_numerator = m_numerator * lhs.m_denominator - lhs.m_numerator * m_denominator;
+    m_denominator = m_denominator * lhs.m_denominator;
+
+    simplify();
     return *this;
 }
 
@@ -144,6 +145,11 @@ bool Decimal::operator>=(const Decimal& lhs) const
 // PRIVATE
 void Decimal::fromStringImplement (const std::string &strNumber)
 {
+    if(strNumber == "0"){
+        m_numerator = 0;
+        return;
+    }
+
     auto commaPosition = strNumber.find('.');
     bool isComma {true};
     if(commaPosition == std::string::npos){

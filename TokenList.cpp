@@ -1,6 +1,7 @@
 #include "TokenList.h"
 
 #include <stdexcept>
+#include <iostream>
 
 #include "CharUtility.h"
 #include "Error.h"
@@ -67,7 +68,14 @@ ValueType TokenList::calculate() const
     if(!operation){
         throw Error(Error::NoKnowToken);
     }else{
-        return operation.get()->operator()(v1, v2);
+        if(m_list[1].isDivide() && v2 == 0){
+            throw Error(Error::DivisionByZero);
+        }
+        else if(m_list[1].isPow() && v1 == 0 && v2 == 0){
+            throw Error(Error::ZeroPowZero);
+        }
+        else
+            return operation.get()->operator()(v1, v2);
     }
 }
 

@@ -17,7 +17,9 @@ public:
         OperatorError,
         NoKnowToken,
         ExpressionEmpty,
-        NumberError};
+        NumberError,
+        DivisionByZero,
+        ZeroPowZero};
 
     Error(ErrCode code, int position = -1):
         m_errCode(code), m_position(position)
@@ -65,13 +67,22 @@ public:
         case NumberError:
             errStr = "There is a number error";
             break;
+        case DivisionByZero:
+            errStr = "Answer not real.";
+            break;
+        case ZeroPowZero:
+            errStr = "Answer not real.";
+            break;
         case None:
             errStr = "No error";
             break;
         default:
             errStr = "Unknown error.";
         }
-        errStr = "Syntax error : " + errStr;
+        if(m_errCode == DivisionByZero || m_errCode == ZeroPowZero)
+            errStr = "Math error : " + errStr;
+        else
+            errStr = "Syntax error : " + errStr;
         return errStr;
     }
 

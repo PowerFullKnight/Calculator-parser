@@ -25,6 +25,8 @@ public:
     bool isOperator() const noexcept { return (m_kind == '*' || m_kind == '/' || m_kind == '+' || m_kind == '-' || m_kind == '^');}
     bool isOpenBracket() const noexcept { return (m_kind=='{' || m_kind =='[' || m_kind == '('); }
     bool isCloseBracket() const noexcept { return (m_kind=='}' || m_kind ==']' || m_kind == ')'); }
+    bool isDivide() const noexcept { return m_kind == '/'; } // Important for x/0
+    bool isPow() const noexcept { return m_kind == '^'; } // Important for 0^0
 
     bool isValid() const noexcept { return isNumber() || isOperator() || isOpenBracket() || isCloseBracket(); }
 
